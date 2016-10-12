@@ -6,6 +6,9 @@ A workflow for correcting and scaffolding long-read(such as PacBio, nanopore) as
 
 
 ## run PacBio assembly using Falcon and PBcR, respectively
+Falcon:fc_run.py fc_run.cfg
+
+
 
 ## do assembly polishing using filtered PacBio reads by QUIVER
 
