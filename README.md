@@ -11,8 +11,11 @@ These scripts are used to do genome assembly scaffolding in three diffent inputs
 
 #requirements
 Perl(version >5.10)
+
 Bioperl 
+
 IrysSolver, RefAligner from BioNano Genomics 
+
 HiRise (https://github.com/DovetailGenomics/HiRise_July2015_GR)
 
 #usage
