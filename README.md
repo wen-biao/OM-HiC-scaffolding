@@ -5,9 +5,13 @@ Here the scripts are used in the manuscript "mproving and correcting the contigu
 
 #introduction
 These scripts are used to do genome assembly scaffolding in three diffent inputs as below:
+
 1)  optical consensus maps and PacBio read assembly contigs from Falcon and PBcR
+
 2)  Dovetail Hi-C reads and PacBio read assembly contigs from Falcon and PBcR
+
 3)  optical consensus maps, Dovetail Hi-C reads and PacBio read assembly contigs from Falcon and PBcR
+
 
 #requirements
 Perl(version >5.10)
