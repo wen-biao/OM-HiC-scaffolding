@@ -1,7 +1,7 @@
 
 
 ##OM-HiC-scaffolding 
-Here the scripts are used in the manuscript "mproving and correcting the contiguity of long-read genome assemblies of three plant species using optical mapping and chromatin capture data"
+Here the scripts are used in the manuscript "Improving and correcting the contiguity of long-read genome assemblies of three plant species using optical mapping and chromatin capture data"
 
 #introduction
 These scripts are used to do genome assembly scaffolding in three diffent inputs as below:
