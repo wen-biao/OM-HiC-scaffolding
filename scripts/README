@@ -1,0 +1,58 @@
+# Nucmer is a dependency
+
+#Step 0
+#FIX THIS 
+perl ../../../../testBioNano/script_release/scripts/fa2cmap.pl -i consensus_diploid_for_andy_forncbi_filtered2b.fa  -n BspQI
+
+
+#Step 1
+perl 1_find_usedCeleraId_in_newQuiveredCeleraId_031615_commandLineOptions.pl \
+/sc/orga/scratch/pendlm02/testBioNano/script_release/v1/output_results/mergeNGS_BN/ \
+/sc/orga/scratch/pendlm02/testBioNano/oldWays/script_release_oldWays/input_data/ \
+mar3_NA12878.scf_BspQI_0Kb_0labels_key.txt \
+./ \
+new_quivered_assembly \
+consensus_diploid_for_andy_forncbi_filtered2b_BspQI_0Kb_0labels_key.txt
+
+#Step 2
+Rscript 2_extract_used_ngs_080114_commandlineoptions.R --args \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/new_quivered_assembly/consensus_diploid_for_andy_forncbi_filtered2b_BspQI_0Kb_0labels.cmap \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/used.translation.fasta.cmap.txt \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/used.newSeq.cmap
+
+#Step 3 -woah! Be sure to edit the original xml files in /sc/orga/scratch/pendlm02/testBioNano/script_release/xml/ so that the
+#              processor and memory count matches the available processors/memory
+perl 3_ngs_to_hybridscaffold_commandlineoptions.pl \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/ \
+/sc/orga/scratch/pendlm02/testBioNano/script_release/v2/output_results/mergeNGS_BN/ \
+/sc/orga/scratch/pendlm02/testBioNano/script_release/RefAligner
+#NB THAT THIS STEP 3 HAS an fsync step at the end that obviously is not set up for backup at sinai.
+
+mkdir /sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/AssignAlignType/
+
+#Step 3b
+R --no-save --args \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/selectedNewV1Seq.vs.v2Hybrid.xmap \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/selectedNewV1Seq.vs.v2Hybrid_r.cmap \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/selectedNewV1Seq.vs.v2Hybrid_q.cmap \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/AssignAlignType/selectedNewV1Seq.vs.v2Hybrid.xmap.txt \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/AssignAlignType/hybrid.filtered.cmap \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/AssignAlignType/ngs.filtered.cmap \
+/sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/AssignAlignType/sticky.xmap.overhang.count.txt \
+< 3b_AssignAlignType_commandLineOptions.R
+
+
+# step_4
+perl 1_identify_overlap_alignments_commandline.pl /sc/orga/scratch/pendlm02/testBioNano/end2end/end_to_end/align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/
+
+# final step
+# build fasta sequence
+python ~/git_repos/omscaffolding/findOverlapsBetweenContigs.py \
+consensus_diploid_for_andy_forncbi_filtered2b.fa \
+consensus_diploid_for_andy_forncbi_filtered2b_BspQI_0Kb_0labels_key.txt \
+align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/fasta/ngs_overlap_status/adjacent_ngs_overlap_status.txt \
+newSeq_merged_Scaff2 \
+align_usedQuiveredCelera_v2Hybrid/alignref_noRepeatMask/fasta/ngs_overlap_status/adjacent_ngs_overlap_status.txt \
+2> step4.err
+
+
