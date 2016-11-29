@@ -1,6 +1,65 @@
 ####Integrated Optical-Mapping and Dovetail-HiC Scaffolding
 
+## step 0: find misassembled regions using Hi-C data
+mkdir 0-falconHiC 0-pbcrHiC
+cd 0-falconHiC 
+bwa index falcon.contigs.fasta  ##copy your falcon assembly contigs here
+mkdir HiCMap shortMap
+
+cd HiCMap
+#ln -s xx.fq ./
+ctg1=../falcon.contigs.fasta 
+  bwa aln $ctg1 ./reads_1.fq -f reads1_1.sai -t 20
+  bwa aln $ctg1 ./reads_2.fq -f reads1_2.sai -t 20
+  bwa sampe -a 300000 $ctg1 reads_1.sai reads_2.sai reads_1.fq reads_2.fq |samblaster --addMateTags |samtools view -bS - -o reads.bam
+  samtools sort reads.bam reads.srt
+  samtools rmdup reads.srt.bam reads.srt.rmdup.bam
+  samtools index reads.srt.rmdup.bam 
+
+cd ../shortMap
+#ln -s xx.fq ./
+  bwa aln $ctg1 ./reads_1.fq -f reads1_1.sai -t 20
+  bwa aln $ctg1 ./reads_2.fq -f reads1_2.sai -t 20
+  bwa sampe -a 300000 $ctg1 reads_1.sai reads_2.sai reads_1.fq reads_2.fq |samblaster --addMateTags |samtools view -bS - -o reads.bam
+  samtools sort reads.bam reads.srt
+  samtools rmdup reads.srt.bam reads.srt.rmdup.bam
+  samtools index reads.srt.rmdup.bam 
+
+#  run HiRise scaffolding
+cd ../scaffolding
+run hirise_commands.pa.sh ../HiCMap/reads.srt.rmdup.bam ../falcon.contigs.fasta ../shortMap/reads.srt.rmdup.bam 10 30
+
+cd ../../0-pbcrHiC
+bwa index pbcr.contigs.fasta  ##copy your pbcr assembly contigs here
+
+mkdir HiCMap shortMap
+cd HiCMap
+#ln -s xx.fq ./
+ctg2=../pbcr.contigs.fasta 
+  bwa aln $ctg2 ./reads_1.fq -f reads1_1.sai -t 20
+  bwa aln $ctg2 ./reads_2.fq -f reads1_2.sai -t 20
+  bwa sampe -a 300000 $ctg2 reads_1.sai reads_2.sai reads_1.fq reads_2.fq |samblaster --addMateTags |samtools view -bS - -o reads.bam
+  samtools sort reads.bam reads.srt
+  samtools rmdup reads.srt.bam reads.srt.rmdup.bam
+  samtools index reads.srt.rmdup.bam 
+
+cd ../shortMap
+#ln -s xx.fq ./
+  bwa aln $ctg2 ./reads_1.fq -f reads1_1.sai -t 20
+  bwa aln $ctg2 ./reads_2.fq -f reads1_2.sai -t 20
+  bwa sampe -a 300000 $ctg2 reads_1.sai reads_2.sai reads_1.fq reads_2.fq |samblaster --addMateTags |samtools view -bS - -o reads.bam
+  samtools sort reads.bam reads.srt
+  samtools rmdup reads.srt.bam reads.srt.rmdup.bam
+  samtools index reads.srt.rmdup.bam 
+
+#  run HiRise scaffolding
+cd ../scaffolding
+run hirise_commands.pa.sh ../HiCMap/reads.srt.rmdup.bam ../pbcr.contigs.fasta ../shortMap/reads.srt.rmdup.bam 10 30
+
+cd ../../
 mkdir 1-falcon 1-pbcr 2-falconBroken 2-pbcrBroken
+perl ./hirise.breaks.table.to.bed.pl 0-falconHiC/scaffolding/hirise_iter_broken_3.gapclosed.table 1-falcon/falcon.hirise.breaks.bed
+perl ./hirise.breaks.table.to.bed.pl 0-pbcrHiC/scaffolding/hirise_iter_broken_3.gapclosed.table 1-pbcr/pbcr.hirise.breaks.bed
 
 ## step 1:  align CMAPs to sequence assemblies with low and high initial alignment p-value, respectively
 
