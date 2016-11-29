@@ -23,15 +23,15 @@ HiRise (https://github.com/DovetailGenomics/HiRise_July2015_GR)
 
   ###requirements for HiRise (see https://github.com/DovetailGenomics/HiRise_July2015_GR)
   
-  Python 3 
+    Python 3 
   
-  BWA (version: 0.7.15-r1140)
+    BWA (version: 0.7.15-r1140)
   
-  samtools (version:1.2)
+    samtools (version:1.2)
   
-  samblaster (https://github.com/GregoryFaust/samblaster)
+    samblaster (https://github.com/GregoryFaust/samblaster)
   
-  Meraculous (http://downloads.sourceforge.net/project/meraculous20/release-2.0.5.tgz)
+    Meraculous (http://downloads.sourceforge.net/project/meraculous20/release-2.0.5.tgz)
   
 
 #Usage
