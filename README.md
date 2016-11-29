@@ -17,7 +17,8 @@ These scripts are used to do genome assembly scaffolding in three ways:
 
 Perl(version >5.10); Bioperl 
 
-IrysSolver, RefAligner from BioNano Genomics 
+IrysSolve scripts http://www.bnxinstall.com/scripts/v3692/
+RefAligner http://www.bnxinstall.com/RefalignerAssembler/Linux/SSE/
 
 HiRise (https://github.com/DovetailGenomics/HiRise_July2015_GR)
 
