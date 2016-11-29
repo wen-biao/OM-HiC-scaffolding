@@ -21,7 +21,7 @@ IrysSolver, RefAligner from BioNano Genomics
 
 HiRise (https://github.com/DovetailGenomics/HiRise_July2015_GR)
 
-  ## requirements for HiRise (see https://github.com/DovetailGenomics/HiRise_July2015_GR)
+  ###requirements for HiRise (see https://github.com/DovetailGenomics/HiRise_July2015_GR)
   
   Python 3 
   
