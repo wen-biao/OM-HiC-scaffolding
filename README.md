@@ -21,12 +21,12 @@ IrysSolve scripts http://www.bnxinstall.com/scripts/v3692/
 
 RefAligner http://www.bnxinstall.com/RefalignerAssembler/Linux/SSE/
 
-BLAST (makeblastdb. blastn)
+BLAST (makeblastdb, blastn)
 
 HiRise (https://github.com/DovetailGenomics/HiRise_July2015_GR)
 
-###requirements for HiRise (see https://github.com/DovetailGenomics/HiRise_July2015_GR)
-  
+#####requirements for HiRise (see https://github.com/DovetailGenomics/HiRise_July2015_GR)
+  
     Python 3 
   
     BWA (version: 0.7.15-r1140)
