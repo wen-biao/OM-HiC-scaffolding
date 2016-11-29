@@ -12,3 +12,4 @@ This workflow mainly contains steps as below:
 
 3) do in-silico Optical Mapping scaffolding using scaffolds from Falcon contigs' scaffolding and in-silico cmap of scaffold sequences from HiRise scaffolding of PBcR contigs
 
+Please read the file "run.sh" if you want to see the details.
