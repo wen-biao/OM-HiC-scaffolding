@@ -25,9 +25,7 @@ BLAST (makeblastdb, blastn)
 
 HiRise (https://github.com/DovetailGenomics/HiRise_July2015_GR)
 
-####requirements for HiRise
-    
-    
+####requirements for HiRise        
     Python 3 
   
     BWA (version: 0.7.15-r1140)
