@@ -1,11 +1,11 @@
 
 
-##OM-HiC-scaffolding 
+# OM-HiC-scaffolding 
 
 Here the scripts are used in the paper "Improving and correcting the contiguity of long-read genome assemblies of three plant species using optical mapping and chromatin conformation capture data". http://genome.cshlp.org/content/27/5/778
 
 
-#Description
+## Description
 These scripts are used to do genome assembly scaffolding in three ways:
 
 1)  scaffolding using optical consensus maps and PacBio read assembly contigs from Falcon and PBcR
@@ -15,7 +15,7 @@ These scripts are used to do genome assembly scaffolding in three ways:
 3)  scaffolding using optical consensus maps, Dovetail Hi-C reads and PacBio read assembly contigs from Falcon and PBcR
 
 
-#System requirements
+## System requirements
 
 Perl(version >5.10); Bioperl 
 
@@ -27,7 +27,7 @@ BLAST (makeblastdb, blastn)
 
 HiRise (https://github.com/DovetailGenomics/HiRise_July2015_GR)
 
-####requirements for HiRise        
+### requirements for HiRise        
     Python 3 
   
     BWA (version: 0.7.15-r1140)
@@ -39,5 +39,5 @@ HiRise (https://github.com/DovetailGenomics/HiRise_July2015_GR)
     Meraculous (http://downloads.sourceforge.net/project/meraculous20/release-2.0.5.tgz)
   
 
-#Usage
+## Usage
 Please read the "README.md" and "run.sh" in each scaffolding worflow
